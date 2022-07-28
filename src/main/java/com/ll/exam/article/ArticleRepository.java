@@ -21,7 +21,7 @@ public class ArticleRepository {
         IntStream.rangeClosed(1, 10).forEach(id -> {
             String title = "제목%d".formatted(id);
             String body = "내용%d".formatted(id);
-            write(title, body);
+            write(title, body); //fail or not?
         });
     }
 
