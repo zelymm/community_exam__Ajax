@@ -128,8 +128,18 @@ public class ArticleController {
     }
 
     public void getArticles(Rq rq) {
-        List<ArticleDto> articleDtos = articleService.findAll();
-        rq.successJson(articleDtos);
+        long fromId = rq.getLongParam("fromId", -1);
 
+        List<ArticleDto> articleDtos = null;
+
+        //-> If nothing is entered, just display all!
+        if( fromId == -1 ){
+            articleDtos = articleService.findAll();
+        }
+        else{
+            articleDtos = articleService.findIdGreaterThan(fromId); //Look for sth greater than fromId !!
+        }
+
+        rq.successJson(articleDtos);
     }
 }
